@@ -64,5 +64,87 @@ Run queries on the database table. Write a function `run_queries()`, execute a g
 
 ## **Task 7:** 
 
-Verify that the log entries have been completed at all stages by checking the contents of the file `code_log.txt`.  
+Verify that the log entries have been completed at all stages by checking the contents of the file `code_log.txt`. 
+
+# Preliminaries: Installing libraries and downloading data  
+
+Before building the code, you need to install the required libraries.
+
+The libraries needed for the code are:  
+
+`requests` - The library used for accessing the information from the URL.  
+
+`bs4` - The library containing the BeautifulSoup function used for webscraping.  
+
+`pandas` - The library used for processing the extracted data, storing it in required formats, and communicating with the databases.  
+
+`sqlite3` - The library required to create a database server connection.  
+
+`numpy` - The library required for the mathematical rounding operations.  
+
+`datetime` - The library containing the function datetime used for extracting the timestamp for logging purposes.  
+
+Install the required libraries from the terminal window. The command syntax is:  
+
+```python
+python3.11 -m pip install <library_name>
+```
+
+Also, download the required exchange rate file using the terminal command:  
+
+```python
+wget https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMSkillsNetwork-PY0221EN-Coursera/labs/v2/exchange_rate.csv
+```
+
+# Code Structure  
+
+Create the file `banks_project.py` in the path `\home\project\`. Copy and paste the following code structure to the file:
+
+```python
+# Code for ETL operations on Country-GDP data
+
+# Importing the required libraries
+
+def log_progress(message):
+    ''' This function logs the mentioned message of a given stage of the
+    code execution to a log file. Function returns nothing'''
+
+def extract(url, table_attribs):
+    ''' This function aims to extract the required
+    information from the website and save it to a data frame. The
+    function returns the data frame for further processing. '''
+
+    return df
+
+def transform(df, csv_path):
+    ''' This function accesses the CSV file for exchange rate
+    information, and adds three columns to the data frame, each
+    containing the transformed version of Market Cap column to
+    respective currencies'''
+
+    return df
+
+def load_to_csv(df, output_path):
+    ''' This function saves the final data frame as a CSV file in
+    the provided path. Function returns nothing.'''
+
+def load_to_db(df, sql_connection, table_name):
+    ''' This function saves the final data frame to a database
+    table with the provided name. Function returns nothing.'''
+
+def run_query(query_statement, sql_connection):
+    ''' This function runs the query on the database table and
+    prints the output on the terminal. Function returns nothing. '''
+
+''' Here, you define the required entities and call the relevant
+functions in the correct order to complete the project. Note that this
+portion is not inside any function.'''
+```
+
+At this stage, import the required libraries at the space mentioned in the code structure. Save the file using `Ctrl+S`.  
+
+Also, initialize all the known variables as shared in the project scenario.  
+
+# Task 1: Logging function
+
 
