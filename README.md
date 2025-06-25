@@ -147,4 +147,31 @@ Also, initialize all the known variables as shared in the project scenario.
 
 # Task 1: Logging function
 
+Write the function to log the progress of the code, `log_progress()`. The function accepts the message to be logged and enters it to a text file `code_log.txt`.  
 
+The format to be used for logging must have the syntax:  
+
+```python
+<time_stamp> : <message>
+```
+
+Each log entry must happen in the next line in the text file.  
+
+You must associate the correct log entries with each of the executed function calls. Use the following table to note the logging message at the end of each function call that follows.  
+
+Task |	Log message on completion |
+---- | -------------- |
+Declaring known values | Preliminaries complete. Initiating ETL process |
+Call extract() function | Data extraction complete. Initiating Transformation process |
+Call transform() function |	Data transformation complete. Initiating Loading process |
+Call load_to_csv() | Data saved to CSV file |
+Initiate SQLite3 connection | SQL Connection initiated |
+Call load_to_db() | Data loaded to Database as a table, Executing queries |
+Call run_query() | Process Complete |
+Close SQLite3 connection | Server Connection closed |
+
+At this stage, you should now make the first log entry from the table above.  
+
+### Peer graded assignment prompt:
+
+Take a screenshot of the code, as created for the `log_progress()` function and save it to your local machine as `Task_1_log_function.png`
