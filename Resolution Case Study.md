@@ -27,5 +27,30 @@ import pandas as pd
 import numpy as np
 import sqlite3
 from datetime import datetime
+```  
+
+To install these libraries, in case the EDI does not show a launching terminal at the bottom of the page, we must click on “Terminal” in the Title Bar, at the top of the screen, and select “New Terminal”.  
+
+![Screenshot_1](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%201.JPG?raw=true)  
+
+Ensure that the terminal shows the following directory path:  
+
+`home/project`  
+
+![Screenshot_2](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%202.JPG?raw=true)  
+
+In case your path is set differently, you can navigate through folders by using the `cd` code, which stands for "change directory".  
+
+If you want to add one folder, you can type "cd" plus the name of the folder you want to add.  
+
+```python
+cd "folder name"
 ```
 
+On the contrary, if you want to go backward, or more technically "one level up", you should write the following command.
+
+```python
+cd ..
+```
+
+`cd` stands for "change directory", whereas `..` stands for "parent directory". 
