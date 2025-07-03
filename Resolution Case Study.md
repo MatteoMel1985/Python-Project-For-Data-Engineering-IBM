@@ -41,13 +41,13 @@ Ensure that the terminal shows the following directory path:
 
 In case your path is set differently, you can navigate through folders by using the `cd` code, which stands for "change directory".  
 
-If you want to add one folder, you can type "cd" plus the name of the folder you want to add.  
+If you want to add a child folder, you can type "cd" plus the name folder name.
 
 ```python
 cd "folder name"
 ```
 
-On the contrary, if you want to go backward, or more technically "one level up", you should write the following command.
+On the contrary, if you want to go one level up to the parent folder, you should write the following command.
 
 ```python
 cd ..
