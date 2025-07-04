@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/e1e31f32-25e3-4317-8867-c74d8bd1ea12)# Preliminaries: Installing libraries and downloading data   
+# Preliminaries: Installing libraries and downloading data   
 
 The preliminary requirements of the exam are the following:  
 
@@ -88,7 +88,7 @@ Wait until the terminal shows `Successfully installed bs4-0.0.2`.
 
 In conclusion, we must download the exchange rate file. To do so, the following code must be launched from the terminal.  
 
-```python
+```
 wget https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMSkillsNetwork-PY0221EN-Coursera/labs/v2/exchange_rate.csv
 ```
 
@@ -160,4 +160,182 @@ Once done, the text editor pane will appear as follows.
 Save the file by digiting the combination `Ctrl+S`.  
 
 # Task 1: Logging function  
+
+Task 1 of this exam requires us to write a `log_progress() function` that accepts the message to be logged and enters it to a text file called `code_log.txt`.   
+The format requested for the logging must have the following syntax:  
+
+```python
+<time_stamp> : <message>
+```  
+
+The following entries must all be logged in the text file, and they have to be correctly associated with all the executed function calls; the messages provided in the right column must be written in the file.   
+ 
+| Task	| Log message on completion |
+| ----- | ------------------------- |
+| Declaring known values |	Preliminaries complete. Initiating ETL process |
+| Call extract() function |	Data extraction complete. Initiating Transformation process |
+| Call transform() function |	Data transformation complete. Initiating Loading process |
+| Call load_to_csv() |	Data saved to CSV file |
+| Initiate SQLite3 connection |	SQL Connection initiated |
+| Call load_to_db()	| Data loaded to Database as a table, Executing queries |
+| Call run_query()	| Process Complete |
+| Close SQLite3 connection |	Server Connection closed |  
+
+In the end, we are requested to take a screenshot of the `log_progress()` function and save it as `Task_1_log_function.png`.  
+
+To this end, I wrote the following function, which will be the first in our code structure.
+
+```python
+def log_progress(message):
+    ''' This function logs the mentioned message of a given stage of the
+    code execution to a log file. Function returns nothing'''
+    timestamp_format = '%Y-%h-%d-%H:%M:%S' # Year-Monthname-Day-Hour-Minute-Second
+    now = datetime.now() # get current timestamp
+    timestamp = now.strftime(timestamp_format)
+    with open("code_log.txt","a") as f:
+        f.write(timestamp + ' : ' + message + '\n')
+```  
+
+The `log_progress` function takes one parameter, called `message`, and creates a docstring, which is a set of comments describing the current stage of the ETL.  
+
+The `timestamp_format` string, appearing as `'%Y-%h-%d-%H:%M:%S'`, describes the format in which the time will be written in the log file. `Y` stands for year, `h` for month name, `d`  for day, `H`  for hour, `M` for minute, and finally, `S` for second. 
+
+The line  
+
+```python
+now = datetime.now()  # get current timestamp
+```  
+gets the current date and time as a `datetime` object using the Python built-in `datetime` module.  
+
+The line 
+
+```python
+timestamp = now.strftime(timestamp_format)
+```
+
+Converts the `datetime` object `now` into a formatted string according to the earlier `timestamp_format`.
+
+The line  
+
+```python
+with open("code_log.txt","a") as f:
+        f.write(timestamp + ' : ' + message + '\n')
+```
+
+Performs the following actions:
+
+1. It opens the file named `code_log.txt` in append mode (appearing as `"a"` between parentheses.
+2. If the file does not exist, Python will create it.
+3. If the file exists, new log entries are added to the end of the file — previous content is not overwritten.
+4. `with` is a context manager, which ensures the file is automatically closed after the block is executed, even if an error occurs.
+5. `f` is a file handle used to interact with the file.
+6. `f.write(timestamp + ' : ' + message + '\n')` writes one line in the `code_log.txt` file, which includes:
+    - The formatted timestamp
+    - A column (`:`) and space
+    - The custom message passed to the function
+    - A newline character `\n` so each log entry appears on its own line.
+
+Following is an example of line in the log file:  
+
+```
+2025-Jul-04-14:35:08 : Data extraction complete. Initiating Transformation process
+```
+
+The requested `Task_1_log_function.png` screenshot will appear as follows. 
+
+![Task_1](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Task_1_log_function.png?raw=true)  
+
+Note that the function calls must be written at the end of the code and will appear as follows. We will see their meaning in-depth once all functions are defined and explained. 
+
+```python
+''' Here, you define the required entities and call the relevant
+functions in the correct order to complete the project. Note that this
+portion is not inside any function.'''
+
+
+# Declaring known values
+
+
+url = "https://web.archive.org/web/20230908091635/https://en.wikipedia.org/wiki/List_of_largest_banks"
+csv_path = "./exchange_rate.csv"
+table_attribs = ["Name", "MC_USD_Billion"]
+output_path = "./Largest_banks_data.csv"
+db_name = "Banks.db"
+table_name = "Largest_banks"
+log_file = "./code_log.txt"
+
+
+log_progress("Preliminaries complete. Initiating ETL process")
+
+
+# Call extract() function
+df = extract(url, table_attribs)
+print(df)
+
+
+log_progress("Data extraction complete. Initiating Transformation process")
+
+
+# Call transform() function
+df = transform(df, csv_path)
+print(df)
+
+
+log_progress("Data transformation complete. Initiating Loading process")
+
+
+# Call load_to_csv()
+load_to_csv(df, output_path)
+
+
+log_progress("Data saved to CSV file")
+
+
+# Initiate SQLite3 connection
+sql_connection = sqlite3.connect(db_name)
+
+
+log_progress("SQL Connection initiated")
+
+
+# Call load_to_db()
+load_to_db(df, sql_connection, table_name)
+
+
+log_progress("Data loaded to Database as a table, Executing queries")
+
+
+# Call run_query()
+# 1. Print the contents of the entire table
+query_statement = f"SELECT * from {table_name}"
+run_query(query_statement, sql_connection)
+
+
+# 2. Print the average market capitalization of all the banks in Billion GBP
+query_statement = f"SELECT AVG(MC_GBP_Billion) FROM {table_name}"
+run_query(query_statement, sql_connection)
+
+
+# 3. Print only the names of the top 5 banks
+query_statement = f"SELECT Name from {table_name} LIMIT 5"
+run_query(query_statement, sql_connection)
+
+
+log_progress("Process Complete")
+
+
+# Close SQLite3 connection
+sql_connection.close()
+
+
+log_progress("Server Connection closed")
+
+
+# Task 7: Verify log entries
+with open(log_file, "r") as log:
+    LogContent = log.read()
+    print(LogContent)
+```
+
+# Task 2 : Extraction of data  
 
