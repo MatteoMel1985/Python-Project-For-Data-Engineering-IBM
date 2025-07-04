@@ -224,7 +224,7 @@ with open("code_log.txt","a") as f:
 
 Performs the following actions:
 
-1. It opens the file named `code_log.txt` in append mode (appearing as `"a"` between parentheses.
+1. It opens the file named `code_log.txt` in append mode (appearing as `"a"` between parentheses).
 2. If the file does not exist, Python will create it.
 3. If the file exists, new log entries are added to the end of the file — previous content is not overwritten.
 4. `with` is a context manager, which ensures the file is automatically closed after the block is executed, even if an error occurs.
