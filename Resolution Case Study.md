@@ -337,5 +337,8 @@ with open(log_file, "r") as log:
     print(LogContent)
 ```
 
-# Task 2 : Extraction of data  
+# Task 2: Extraction of data  
 
+Analyse the webpage on the given URL:  
+
+<https://web.archive.org/web/20230908091635/https://en.wikipedia.org/wiki/List_of_largest_banks>  
