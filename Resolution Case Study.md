@@ -1,4 +1,4 @@
-# Preliminaries: Installing libraries and downloading data   
+![image](https://github.com/user-attachments/assets/e1e31f32-25e3-4317-8867-c74d8bd1ea12)# Preliminaries: Installing libraries and downloading data   
 
 The preliminary requirements of the exam are the following:  
 
@@ -95,4 +95,69 @@ wget https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMSkill
 Once the process is completed, we will be able to see the file `exchange_rate.csv` in the Explorer Menu of the EDI, under the "project" folder.  
 
 ![Screenshot_4](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%204.JPG?raw=true)  
+
+# Code Structure  
+
+To create the file `banks_project.py` in the path `\home\project\`, we must click on the "Explore" icon on the left pane, select the folder "project", right click below it and select "New File"
+
+![Screenshot_5](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%205.JPG?raw=true)  
+
+Once the window is open, we must type `banks_project.py`and click on OK.  
+
+![Screenshot_6](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%206.JPG?raw=true)  
+
+The file `banks_project.py`will appear in the project folder, and it will automatically open in the text editor pane. In case it does not appear, double-click the `banks_project.py`icon in the project folder.  
+
+![Screenshot_7](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%207.JPG?raw=true)  
+
+There, on line number 1, we must paste the code structure provided, which is the following.
+
+```python
+# Code for ETL operations on Country-GDP data
+
+# Importing the required libraries
+
+def log_progress(message):
+    ''' This function logs the mentioned message of a given stage of the
+    code execution to a log file. Function returns nothing'''
+
+def extract(url, table_attribs):
+    ''' This function aims to extract the required
+    information from the website and save it to a data frame. The
+    function returns the data frame for further processing. '''
+
+    return df
+
+def transform(df, csv_path):
+    ''' This function accesses the CSV file for exchange rate
+    information, and adds three columns to the data frame, each
+    containing the transformed version of Market Cap column to
+    respective currencies'''
+
+    return df
+
+def load_to_csv(df, output_path):
+    ''' This function saves the final data frame as a CSV file in
+    the provided path. Function returns nothing.'''
+
+def load_to_db(df, sql_connection, table_name):
+    ''' This function saves the final data frame to a database
+    table with the provided name. Function returns nothing.'''
+
+def run_query(query_statement, sql_connection):
+    ''' This function runs the query on the database table and
+    prints the output on the terminal. Function returns nothing. '''
+
+''' Here, you define the required entities and call the relevant
+functions in the correct order to complete the project. Note that this
+portion is not inside any function.'''
+```
+
+Once done, the text editor pane will appear as follows.  
+
+![Screenshot_8](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%208.JPG?raw=true)  
+
+Save the file by digiting the combination `Ctrl+S`.  
+
+# Task 1: Logging function  
 
