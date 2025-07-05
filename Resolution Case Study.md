@@ -1,4 +1,4 @@
-# Preliminaries: Installing libraries and downloading data   
+![image](https://github.com/user-attachments/assets/c6d59d86-9eed-4cb4-8438-ae43b7251323)# Preliminaries: Installing libraries and downloading data   
 
 The preliminary requirements of the exam are the following:  
 
@@ -342,3 +342,8 @@ with open(log_file, "r") as log:
 Analyse the webpage on the given URL:  
 
 <https://web.archive.org/web/20230908091635/https://en.wikipedia.org/wiki/List_of_largest_banks>  
+
+As we are required to identify the position of the table under the heading `By market capitalization`, which is immediately visible on the central part of the screen, right-click on any point of the table, and select “inspect”, as shown in the following screenshot.  
+
+![Screenshot_9](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%209.JPG?raw=true)  
+
