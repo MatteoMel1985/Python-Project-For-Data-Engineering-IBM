@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/c6d59d86-9eed-4cb4-8438-ae43b7251323)# Preliminaries: Installing libraries and downloading data   
+# Preliminaries: Installing libraries and downloading data   
 
 The preliminary requirements of the exam are the following:  
 
