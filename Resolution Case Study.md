@@ -355,9 +355,9 @@ In the whole code, we must first identify the following element string:
 <table class="wikitable sortable mw-collapsible jquery-tablesorter mw-made-collapsible">
 ```   
 
-That represents the start of a table in an HTML document; being the first, it refers to the one under the heading `By market capitalization`, which is the one we are required to analyse.  
+That represents the start of a table in an HTML document; being the first, it refers to the one under the heading `By market capitalization`, which is what we are required to analyse.  
 
-If we collapse it, we will observe two further objects, respectively named `<thead>`, representing the start tag of the table heading, and `<tbody>`, being the start tag of the table’s body.  
+If we collapse it, we will observe two further objects, respectively named `<thead>`, representing the start tag of the table heading, and `<tbody>`, which is the start tag of the table’s body.  
 
 By collapsing the latter, we will notice that all the rows are mentioned as `tr` objects in the code.  
 
