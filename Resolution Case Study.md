@@ -357,7 +357,7 @@ In the whole code, we must first identify the following element string:
 
 That represents the start of a table in an HTML document; being the first, it refers to the one under the heading `By market capitalization`, which is the one we are required to analyse.  
 
-If we collapse it, we will notice two further objects, respectively named `<thead>`, representing the start tag of the table heading, and `<tbody>`, being the start tag of the table’s body.  
+If we collapse it, we will observe two further objects, respectively named `<thead>`, representing the start tag of the table heading, and `<tbody>`, being the start tag of the table’s body.  
 
 By collapsing the latter, we will notice that all the rows are mentioned as `tr` objects in the code.  
 
