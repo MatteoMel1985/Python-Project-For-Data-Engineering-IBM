@@ -365,5 +365,30 @@ As we are required to take a screenshot of the HTML code, as obtained by inspect
 
 ![Screenshot_10](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%2010.JPG?raw=true)  
 
+The second part of Task 2 requires us to take a screenshot of the code as created for the `extract()` function, and save it on the local machine as `Task_2b_extract.png`. In the instructions, we are reminded to remove the last character from the `Market Cap` column contents, like `'\n'`, and to typecast the value to float format. 
+The screenshot and code are shown below; they will be further commented in depth in the following lines of this case study. 
 
+![Task_2b](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Task_2b_extract.PNG?raw=true)  
+
+```Python
+def extract(url, table_attribs):
+    ''' This function aims to extract the required
+    information from the website and save it to a data frame. The
+    function returns the data frame for further processing. '''
+
+
+    page = requests.get(url).text
+    data = BeautifulSoup(page,'html.parser')
+    df = pd.DataFrame(columns=table_attribs)
+    tables = data.find_all('tbody')
+    rows = tables[0].find_all('tr')
+    for row in rows:
+        col = row.find_all('td')
+        if len(col)!=0:
+            data_dict = {"Name": col[1].find_all("a")[1]["title"],
+                         "MC_USD_Billion": float(col[2].contents[0][:-1])}
+            df1 = pd.DataFrame(data_dict, index=[0])
+            df = pd.concat([df, df1], ignore_index=True)
+    return df
+```
 
