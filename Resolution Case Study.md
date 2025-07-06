@@ -347,3 +347,23 @@ As we are required to identify the position of the table under the heading `By m
 
 ![Screenshot_9](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%209.JPG?raw=true)  
 
+On the right side of the screen, the list of HTML codes composing the page will appear. By moving the mouse pointer on them, the different corresponding parts of the table will be automatically highlighted.  
+
+In the whole code, we must first identify the following element string:  
+
+```HTML
+<table class="wikitable sortable mw-collapsible jquery-tablesorter mw-made-collapsible">
+```   
+
+That represents the start of a table in an HTML document; being the first, it refers to the one under the heading `By market capitalization`, which is the one we are required to analyse.  
+
+If we collapse it, we will notice two further objects, respectively named `<thead>`, representing the start tag of the table heading, and `<tbody>`, being the start tag of the table’s body.  
+
+By collapsing the latter, we will notice that all the rows are mentioned as `tr` objects in the code.  
+
+As we are required to take a screenshot of the HTML code, as obtained by inspecting the page, ensuring that the contents of at least the first row of the table are visible, we can save the following image as `Task_2a_extract.png`.  
+
+![Screenshot_10](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%2010.JPG?raw=true)  
+
+
+
