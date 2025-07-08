@@ -392,3 +392,12 @@ def extract(url, table_attribs):
     return df
 ```
 
+## Function Definition and Docstring  
+
+`def extract(url, table_attribs)` defines a function named extract that takes two arguments:  
+
+`url`: the webpage URL where the data is located.  
+
+`table_attribs`: a list of column names for the resulting DataFrame (e.g., ["Name", "MC_USD_Billion"]).  
+
+Finally, the docstring below provides a literal explanation of the function’s purpose.  
