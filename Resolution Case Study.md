@@ -457,7 +457,7 @@ This is where we’ll store the extracted data.
     rows = tables[0].find_all('tr')
 ```
 
-`tables[0]`: selects the first <tbody>.
+`tables[0]`: selects the first `<tbody>`.
 
 `.find_all('tr')`: finds all <tr> elements (table rows) inside it.
 
