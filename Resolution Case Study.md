@@ -420,3 +420,122 @@ Finally, the docstring below provides a literal explanation of the function’s 
 `.text`: Retrieves the raw HTML content of the page as a string.  
 
 `page`: now contains the full HTML content of the Wikipedia page.  
+
+## Parsing the HTML with BeautifulSoup  
+
+```Python
+    data = BeautifulSoup(page, 'html.parser')
+```
+
+`BeautifulSoup(page, 'html.parser')`: Parses the HTML using Python’s built-in html.parser.
+
+`data`: is now a BeautifulSoup object — a structured tree-like representation of the HTML, making it easier to navigate and search.
+
+## Create Empty DataFrame with Desired Columns  
+
+```Python
+    df = pd.DataFrame(columns=table_attribs)
+```
+
+Initializes an empty DataFrame with columns defined by table_attribs (like ["Name", "MC_USD_Billion"]).  
+
+This is where we’ll store the extracted data.  
+
+## Locate All Table Bodies (<tbody> Tags)  
+
+```Python
+    tables = data.find_all('tbody')
+```
+
+`data.find_all('tbody')`: Finds all <tbody> tags in the HTML.
+
+`tables`: is a list of all <tbody> elements (which contain rows of tables).  
+
+## Extract All the Table Rows from the First Table  
+
+```Python
+    rows = tables[0].find_all('tr')
+```
+
+`tables[0]`: selects the first <tbody>.
+
+`.find_all('tr')`: finds all <tr> elements (table rows) inside it.
+
+`rows`: is now a list of all rows in the first table.  
+
+## Loop Through the Table Rows  
+
+```Python
+    for row in rows:
+        col = row.find_all('td')
+```
+
+Iterates over each `row` in the table.  
+
+`row.find_all('td')`: Gets all <td> elements (table data cells).  
+
+`col`: is a list of columns in the row.  
+
+## Filter Out Non-Data Rows  
+
+```Python
+        if len(col)!=0:
+```
+
+Skips rows that don’t contain any `<td>` (like header rows that use `<th>`).  
+
+Only processes rows with actual data.  
+
+## Extract and Format the Data from Columns  
+
+```Python
+            data_dict = {"Name": col[1].find_all("a")[1]["title"],
+                         "MC_USD_Billion": float(col[2].contents[0][:-1])}
+```
+
+Here’s the tricky part — parsing nested tags. Let’s break this down:
+
+`col[1].find_all("a")[1]["title"]`
+
+* `col[1]`: This is the second column in the row, typically containing the bank name.  
+* `.find_all("a")`: Finds all <a> tags (links) inside it.  
+
+* `[1]`: Selects the second <a> tag — this is based on inspection of the HTML structure of that specific Wikipedia table.  
+
+* `["title"]`: Extracts the title attribute of that <a> tag (e.g., "JPMorgan Chase").  
+
+`float(col[2].contents[0][:-1])`
+
+* `col[2]`: This is the third column — the Market Cap in USD.  
+
+* `.contents[0]`: Grabs the text inside the cell (e.g., '387.0\n' or '387.0%').  
+
+* `[:-1]`: Removes the last character (likely a newline \n or %).  
+
+* `float(...)`: Converts the string into a floating-point number.
+
+## Add to the Main DataFrame  
+
+```Python
+            df1 = pd.DataFrame(data_dict, index=[0])
+            df = pd.concat([df, df1], ignore_index=True)
+```
+
+`df1`: creates a one-row DataFrame from data_dict.
+
+`pd.concat(...)`: appends df1 to df.
+
+`ignore_index=True`: resets row indexes so they remain continuous.  
+
+## Continue Until All Rows are Parsed  
+
+The loop continues for all rows in `rows`.  
+
+## Return the Final DataFrame  
+
+```Python
+    return df
+```
+
+Returns the full DataFrame containing extracted bank names and their market capitalisations.  
+
