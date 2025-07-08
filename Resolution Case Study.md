@@ -394,6 +394,13 @@ def extract(url, table_attribs):
 
 ## Function Definition and Docstring  
 
+```Python
+def extract(url, table_attribs):
+    ''' This function aims to extract the required
+    information from the website and save it to a data frame. The
+    function returns the data frame for further processing. '''
+```
+
 `def extract(url, table_attribs)` defines a function named extract that takes two arguments:  
 
 `url`: the webpage URL where the data is located.  
@@ -401,3 +408,15 @@ def extract(url, table_attribs):
 `table_attribs`: a list of column names for the resulting DataFrame (e.g., ["Name", "MC_USD_Billion"]).  
 
 Finally, the docstring below provides a literal explanation of the function’s purpose.  
+
+## Requesting the Web Page  
+
+```Python
+    page = requests.get(url).text
+```
+
+`requests.get(url)`: Sends an HTTP GET request to the given URL.  
+
+`.text`: Retrieves the raw HTML content of the page as a string.  
+
+`page`: now contains the full HTML content of the Wikipedia page.  
