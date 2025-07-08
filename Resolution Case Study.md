@@ -539,3 +539,89 @@ The loop continues for all rows in `rows`.
 
 Returns the full DataFrame containing extracted bank names and their market capitalisations.  
 
+Now, Task2_C requires us to take a screenshot of the output; however, by launching the following command on the terminal, we will realise that nothing is shown.  
+
+```Python
+python3.11 banks_project.py 
+```  
+
+This is because we have not written yet the function calls. Since the queries to run on the database are part of Task 6, whereas the verification of the log entries is requested in the Task 7, I will skip these parts, and I will write a function call that will provide the requested output. 
+
+```Python
+''' Here, you define the required entities and call the relevant
+functions in the correct order to complete the project. Note that this
+portion is not inside any function.'''
+
+
+# Declaring known values
+
+
+url = "https://web.archive.org/web/20230908091635/https://en.wikipedia.org/wiki/List_of_largest_banks"
+csv_path = "./exchange_rate.csv"
+table_attribs = ["Name", "MC_USD_Billion"]
+output_path = "./Largest_banks_data.csv"
+db_name = "Banks.db"
+table_name = "Largest_banks"
+log_file = "./code_log.txt"
+
+
+log_progress("Preliminaries complete. Initiating ETL process")
+
+
+# Call extract() function
+df = extract(url, table_attribs)
+print(df)
+
+
+log_progress("Data extraction complete. Initiating Transformation process")
+
+
+# Call transform() function
+df = transform(df, csv_path)
+print(df)
+
+
+log_progress("Data transformation complete. Initiating Loading process")
+
+
+# Call load_to_csv()
+load_to_csv(df, output_path)
+
+
+log_progress("Data saved to CSV file")
+
+
+# Initiate SQLite3 connection
+sql_connection = sqlite3.connect(db_name)
+
+
+log_progress("SQL Connection initiated")
+
+
+# Call load_to_db()
+load_to_db(df, sql_connection, table_name)
+
+
+log_progress("Data loaded to Database as a table, Executing queries")
+
+
+# Call run_query()
+# These queries will be shown in Task 6
+
+log_progress("Process Complete")
+
+
+# Close SQLite3 connection
+sql_connection.close()
+
+
+log_progress("Server Connection closed")
+
+
+# Task 7: Verify log entries
+with open(log_file, "r") as log:
+    LogContent = log.read()
+    print(LogContent)
+```  
+
+
