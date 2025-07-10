@@ -540,7 +540,10 @@ The loop continues for all rows in `rows`.
 
 Returns the full DataFrame containing extracted bank names and their market capitalisations.  
 
-## Function call for `extract()`
+## Function call for `extract()  
+
+Finally, we are requested to write the function call for `extract()`. It will be located at the end of the code, and it will allow the machine to show the dataframe with the table and log the first entries.  
+Following is the code that will be further explained in depth.   
 
 ```Python
 '' Here, you define the required entities and call the relevant
@@ -548,7 +551,6 @@ functions in the correct order to complete the project. Note that this
 portion is not inside any function.'''
 
 # Declaring known values
-
 
 url = "https://web.archive.org/web/20230908091635/https://en.wikipedia.org/wiki/List_of_largest_banks"
 csv_path = "./exchange_rate.csv"
@@ -558,10 +560,12 @@ db_name = "Banks.db"
 table_name = "Largest_banks"
 log_file = "./code_log.txt"
 
-log_progress("Data extraction complete. Initiating Transformation process")
+log_progress("Preliminaries complete. Initiating ETL process")
 
 # Call extract() function
 df = extract(url, table_attribs)
 print(df)
+
+log_progress("Data extraction complete. Initiating Transformation process")
 ```
 
