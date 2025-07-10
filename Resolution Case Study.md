@@ -540,7 +540,7 @@ The loop continues for all rows in `rows`.
 
 Returns the full DataFrame containing extracted bank names and their market capitalisations.  
 
-## Function call for `extract()  
+## Function call for `extract()`  
 
 Finally, we are requested to write the function call for `extract()`. It will be located at the end of the code, and it will allow the machine to show the dataframe with the table and log the first entries.  
 Following is the code that will be further explained in depth.   
