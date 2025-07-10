@@ -493,11 +493,12 @@ Only processes rows with actual data.
                          "MC_USD_Billion": float(col[2].contents[0][:-1])}
 ```
 
-Here’s the tricky part — parsing nested tags. Let’s break this down:
+This string is specifically devised to parse nested tags.  
 
 `col[1].find_all("a")[1]["title"]`
 
 * `col[1]`: This is the second column in the row, typically containing the bank name.  
+
 * `.find_all("a")`: Finds all <a> tags (links) inside it.  
 
 * `[1]`: Selects the second <a> tag — this is based on inspection of the HTML structure of that specific Wikipedia table.  
