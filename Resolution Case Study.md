@@ -569,3 +569,124 @@ print(df)
 log_progress("Data extraction complete. Initiating Transformation process")
 ```
 
+## Purpose of This Section  
+
+This section sets up the environment and runs the ETL pipeline by:  
+
+1. Declaring key variables (file paths, URLs, etc.)  
+
+2. Calling the ETL functions (extract, transform, etc.)  
+
+3. Logging progress for traceability and debugging  
+
+It's not inside any function, but it runs immediately when the script is executed.  
+
+## 1. Declaring Known Values  
+
+```Python
+url = "https://web.archive.org/web/20230908091635/https://en.wikipedia.org/wiki/List_of_largest_banks"
+```
+
+`url` is the source of the data: a snapshot of a Wikipedia page listing the largest banks.  
+
+Used by the `extract()` function to get the HTML content.  
+
+```Python
+csv_path = "./exchange_rate.csv"
+```
+It declares the local path to a CSV file with the exchange rates (EUR, GBP, and INR).  
+
+Used by the `transform()` function to convert USD market cap to other currencies.  
+
+```Python
+table_attribs = ["Name", "MC_USD_Billion"]
+```
+
+This string shows the column names for the output DataFrame.  
+
+It is used during the extraction process to initialise and organise the data structure.  
+
+```Python
+output_path = "./Largest_banks_data.csv"
+```
+
+This declares the `output_path`, or the name of the file where the final transformed data will be saved as a CSV.
+
+Used by `load_to_csv()`.  
+
+```Python
+db_name = "Banks.db"
+```
+
+`db_name` is the SQLite database file name where the data will be stored.
+
+Used by `load_to_db()` and `run_query()`.  
+
+```Python
+table_name = "Largest_banks"
+```
+
+It is the name of the database table inside `Banks.db`, where the DataFrame will be loaded.  
+
+```Python
+log_file = "./code_log.txt"
+```
+
+It declares the name of the log file that records each stage of the process with a timestamp.  
+
+Used inside the `log_progress()` function.  
+
+## 2. Logging Preliminaries  
+
+```Python
+log_progress("Preliminaries complete. Initiating ETL process")
+```
+
+This records a log entry indicating that the variable declarations are done and the ETL pipeline is starting.  
+
+It helps with tracking and debugging in production workflows.  
+
+## 3. Extracting the Data  
+
+```Python
+df = extract(url, table_attribs)
+```
+
+Calls the `extract()` function:  
+
+* Fetches the HTML from the Wikipedia URL  
+
+* Parses the table rows using BeautifulSoup  
+
+* Extracts the bank name and market cap  
+
+* Returns a pandas DataFrame
+
+```Python
+print(df)
+```
+
+It displays the extracted DataFrame in the terminal, which is useful for quick verification during development.  
+
+## 4. Logging Extraction Completion  
+
+```Python
+log_progress("Data extraction complete. Initiating Transformation process")
+```
+
+It adds another timestamped entry to the log file.
+
+It indicates that extraction was successful, and transformation is next.  
+
+Ultimately, as the function call is now complete, by running the following command in the terminal, we can complete `Task_2c`, which consists of taking a screenshot of the output as obtained in the terminal and saving it as `Task_2c_extract.png`. 
+
+```
+python3.11 banks_project.py
+```
+
+![Task_2c](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Task_2c_extract.PNG?raw=true)  
+
+# Task 3 : Transformation of data  
+
+
+
