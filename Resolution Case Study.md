@@ -686,7 +686,26 @@ python3.11 banks_project.py
 
 ![Task_2c](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Task_2c_extract.PNG?raw=true)  
 
-# Task 3 : Transformation of data  
+# Task 3: Transformation of data  
 
+We are now requested to write a Transform function that performs the following tasks:
+
+1.	Read the exchange CSV file and convert the contents to a dictionary so that the contents of the first columns are the keys to the dictionary and the contents of the second column are the corresponding values.  
+<details>
+<summary>Hint</summary>
+<br>
+The following syntax, fine-tuned for our code, can be employed to achieve this end.  
+    
+```Python 
+dict = dataframe.set_index('Col_1_header').to_dict()['Col_2_header']
+```
+</details>  
+
+2. Add 3 different columns to the dataframe, viz. `MC_GBP_Billion`, `MC_EUR_Billion` and `MC_INR_Billion`, each containing the content of `MC_USD_Billion` scaled by the corresponding exchange rate factor. Remember to round the resulting data to 2 decimal places.
+   A sample statement is being provided for adding the `MC_GBP_Billion` column. You can use this to add the other two statements.
+
+   ```Python
+   df['MC_GBP_Billion'] = [np.round(x*exchange_rate['GBP'],2) for x in df['MC_USD_Billion']]
+   ```  
 
 
