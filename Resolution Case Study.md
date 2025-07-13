@@ -546,7 +546,7 @@ Finally, we are requested to write the function call for `extract()`. It will be
 Following is the code that will be further explained in depth.   
 
 ```Python
-'' Here, you define the required entities and call the relevant
+''' Here, you define the required entities and call the relevant
 functions in the correct order to complete the project. Note that this
 portion is not inside any function.'''
 
