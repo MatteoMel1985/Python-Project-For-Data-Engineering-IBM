@@ -1,4 +1,4 @@
-# Preliminaries: Installing libraries and downloading data   
+python3.11 -m pip install bs4# Preliminaries: Installing libraries and downloading data   
 
 The preliminary requirements of the exam are the following:  
 
@@ -814,6 +814,38 @@ The following is what should appear on the terminal, which can be used as the re
 
 # Task 4: Loading to CSV  
 
+In Task for of this activity, we are required to write the function to load the transformed data frame to a CSV file, called `load_to_csv()`, in the path mentioned in the project scenario.  
+
+Finally, the peer graded assignment asks us to double-click the created CSV file in the `Explorer` tab on the left ribbon of the programming pane in Cloud IDE, take a snapshot of it on the editor screen screen and save it as `Task_4_CSV.png`.  
+
+This is a fairly easy task, as the `load_to_csv()` function can be described with a single line.
+
+```Python
+def load_to_csv(df, output_path):
+    ''' This function saves the final data frame as a CSV file in
+    the provided path. Function returns nothing.'''
+
+    df.to_csv(output_path, index=False)
+```  
+
+## Function Purpose  
+
+This function is the “L” (Load) step in the Extract–Transform–Load (ETL) pipeline. It takes a transformed DataFrame (i.e. your bank market cap data in multiple currencies) and writes it to a CSV file on the local file system.  
+
+## Line-by-line Description  
+
+## 1
+
+```Python
+def load_to_csv(df, output_path):
+```
+
+* This line defines a function called `load_to_csv`.
+* It takes two arguments:
+    * `df`: the Pandas DataFrame you want to save
+    * `output_path`: the path you should be saving the CSV file to
+
+## 2
 
 
 
