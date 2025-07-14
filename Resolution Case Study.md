@@ -700,11 +700,77 @@ dict = dataframe.set_index('Col_1_header').to_dict()['Col_2_header']
 ```
 </details>  
 
-2. Add 3 different columns to the dataframe, viz. `MC_GBP_Billion`, `MC_EUR_Billion` and `MC_INR_Billion`, each containing the content of `MC_USD_Billion` scaled by the corresponding exchange rate factor. Remember to round the resulting data to 2 decimal places.
-   A sample statement is being provided for adding the `MC_GBP_Billion` column. You can use this to add the other two statements.
+2. Add 3 different columns to the dataframe, viz. `MC_GBP_Billion`, `MC_EUR_Billion` and `MC_INR_Billion`, each containing the content of `MC_USD_Billion` scaled by the corresponding exchange rate factor. Remember to round the resulting data to 2 decimal places.  
+
+A sample statement is being provided for adding the `MC_GBP_Billion` column. You can use this to add the other two statements.
 
    ```Python
    df['MC_GBP_Billion'] = [np.round(x*exchange_rate['GBP'],2) for x in df['MC_USD_Billion']]
    ```  
+
+Finally, to complete this section of the test, we are required to take a screenshot of the code, as created for the `transform()` functon, and save it as ‘Task_3a_transform.png`.  
+
+Furthermore, a snapshot of the output is requested as well, to be saved as `Task_3b_tranform.png`.  
+
+To achieve this end, I wrote the following function, which I will break it down line by line.  
+
+Point 1 and point and point 2 are shown in the documentation comments. 
+
+```Python
+def transform(df, csv_path):
+    ''' This function accesses the CSV file for exchange rate
+    information, and adds three columns to the data frame, each
+    containing the transformed version of Market Cap column to
+    respective currencies'''
+
+
+        # Read exchange rate CSV file
+    exchange_rate = pd.read_csv(csv_path)
+
+
+    # Convert to a dictionary with "Currency" as keys and "Rate" as values
+    exchange_rate = exchange_rate.set_index("Currency").to_dict()["Rate"]
+
+
+    # columns to dataframe. Round off to two decimals
+    df["MC_GBP_Billion"] = [np.round(x * exchange_rate["GBP"], 2) for x in df["MC_USD_Billion"]]
+    df["MC_EUR_Billion"] = [np.round(x * exchange_rate["EUR"], 2) for x in df["MC_USD_Billion"]]
+    df["MC_INR_Billion"] = [np.round(x * exchange_rate["INR"], 2) for x in df["MC_USD_Billion"]]
+
+
+    return df
+```
+
+## Function Definition and Docstring  
+
+* `def transform(df, csv_path):` *creates a function named transform that expects*
+    * `df` – a Pandas DataFrame already containing a column called MC_USD_Billion.
+    * `csv_path` – a string or pathlib object pointing to a CSV file of exchange rates (one row per currency).
+* **Docstring** (written between " ''' ") – briefly summarises the purpose: read rates, add three new currency columns.
+
+## Read the exchange‑rate CSV  
+
+```Python
+    # Read exchange rate CSV file
+    exchange_rate = pd.read_csv(csv_path)
+```
+
+* `pd.read_csv(csv_path)` – loads the CSV into a DataFrame named `exchange_rate`.
+
+## Convert that DataFrame to a handy dictionary  
+
+```Python
+    # Convert to a dictionary with "Currency" as keys and "Rate" as values
+    exchange_rate = exchange_rate.set_index("Currency").to_dict()["Rate"]
+```
+
+* `set_index("Currency")` – makes the Currency column the row index.
+* `to_dict()` – transforms the DataFrame into a nested dict of the form
+{'Rate': {'GBP': 0.8, 'EUR': 0.93, 'INR': 82.95}}
+* `["Rate"]` – picks out the inner dictionary keyed by Currency.
+Result:
+`exchange_rate = {'GBP': 0.8, 'EUR': 0.93, 'INR': 82.95}`
+
+
 
 
