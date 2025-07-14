@@ -708,13 +708,15 @@ A sample statement is being provided for adding the `MC_GBP_Billion` column. You
    df['MC_GBP_Billion'] = [np.round(x*exchange_rate['GBP'],2) for x in df['MC_USD_Billion']]
    ```  
 
-Finally, to complete this section of the test, we are required to take a screenshot of the code, as created for the `transform()` functon, and save it as ‘Task_3a_transform.png`.  
+Finally, to complete this section of the test, we are required to write the function call for `transform()`, take a screenshot of the code, as created for the `transform()` functon, and save it as `Task_3a_transform.png`.  
 
-Furthermore, a snapshot of the output is requested as well, to be saved as `Task_3b_tranform.png`.  
+Furthermore, a snapshot of the output after being run is requested as well, to be saved as `Task_3b_tranform.png`.  
 
 To achieve this end, I wrote the following function, which I will break it down line by line.  
 
-Point 1 and point and point 2 are shown in the documentation comments. 
+Point 1 and point and point 2 are shown in the documentation comments, and the image below can be used to satisfy the screenshot request named `Task_3a_transform.png`  
+
+![Task_3a](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Task_3a_transform.PNG?raw=true)  
 
 ```Python
 def transform(df, csv_path):
@@ -767,9 +769,51 @@ def transform(df, csv_path):
 * `set_index("Currency")` – makes the Currency column the row index.
 * `to_dict()` – transforms the DataFrame into a nested dict of the form
 {'Rate': {'GBP': 0.8, 'EUR': 0.93, 'INR': 82.95}}
-* `["Rate"]` – picks out the inner dictionary keyed by Currency.
-Result:
+* `["Rate"]` – picks out the inner dictionary keyed by Currency.  
+Result:  
 `exchange_rate = {'GBP': 0.8, 'EUR': 0.93, 'INR': 82.95}`
+
+### *This part of the code satisfies the criteria point 1 of task 3. Let's proceed with point 2.* 
+
+## Add currency‑converted columns  
+
+```Python
+    # columns to dataframe. Round off to two decimals
+    df["MC_GBP_Billion"] = [np.round(x * exchange_rate["GBP"], 2) for x in df["MC_USD_Billion"]]
+    df["MC_EUR_Billion"] = [np.round(x * exchange_rate["EUR"], 2) for x in df["MC_USD_Billion"]]
+    df["MC_INR_Billion"] = [np.round(x * exchange_rate["INR"], 2) for x in df["MC_USD_Billion"]]
+```
+
+* List comprehensions iterate over every USD market‑cap value (`x`), multiply by the chosen rate, then round to two decimal places with `np.round`.
+* Three new columns are created:
+    * `MC_GBP_Billion`  
+    * `MC_EUR_Billion`  
+    * `MC_INR_Billion`  
+* `np` assumes you’ve already imported `numpy as np` (and `pandas as pd`), which we have done in the preliminaries.
+
+Finally, before running the program, we are required to write the `transform()` function call, which must be added below the `# Call extract() function`.
+
+```Python
+# Call transform() function
+df = transform(df, csv_path)
+print(df)
+
+
+log_progress("Data transformation complete. Initiating Loading process")
+```
+
+Finally, we can run the program by digiting in the terminal  
+
+```
+python3.11 banks_project.py
+```
+
+The following is what should appear on the terminal, which can be used as the requested screenshot named `Task_3b_tranform.png`  
+
+![Task_3b](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Task_3b_tranform.PNG?raw=true)  
+
+# Task 4: Loading to CSV  
+
 
 
 
