@@ -962,7 +962,7 @@ load_to_db(df, sql_connection, table_name)
 log_progress("Data loaded to Database as a table, Executing queries")
 ```
 
-## Line 1  
+## *Line 1*  
 
 ```Python
 # Initiate SQLite3 connection
@@ -973,7 +973,7 @@ sql_connection = sqlite3.connect(db_name)
 * `sqlite3.connect(...)` is a built-in Python function that opens or creates a SQLite `.db` file.  
 * `db_name` is a string variable defined earlier (`db_name = "Banks.db"`), so this line opens (or creates) the file `Banks.db` in the current directory, and returns a connection object.
 
-## Line 2  
+## *Line 2*  
 
 ```Python
 log_progress("SQL Connection initiated")
@@ -984,7 +984,7 @@ log_progress("SQL Connection initiated")
     * Writes timestamped messages to a log file like `code_log.txt`.  
     * Useful for debugging and monitoring the ETL process.
 
-## Line 3  
+## *Line 3*  
 
 ```Python
 # Call load_to_db()
@@ -1003,7 +1003,7 @@ load_to_db(df, sql_connection, table_name)
 * If the table already exists, it replaces it (thanks to `if_exists='replace'` inside the function).  
 * No row indices are saved (because of `index=False`).  
 
-## Line 4  
+## *Line 4*  
 
 ```Python
 log_progress("Data loaded to Database as a table, Executing queries")
