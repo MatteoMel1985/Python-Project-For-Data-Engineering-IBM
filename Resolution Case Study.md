@@ -884,3 +884,137 @@ By clicking on it and opening it, we can take a screenshot of the editor screen 
 ![Task_4](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Task_4_CSV.PNG?raw=true)  
 
 # Task 5: Loading to Database  
+
+The following task of this practise is similarly simple.  
+
+We are not expected to load the transformed data frame to an SQL database, like, `load_to_db()`, by using the database and table names mentioned in the project scenario.  
+Before calling the function, the connection to the SQLite3 database server with the name `Banks.db` must be initiated. Pass this connection object, along with the required table name `Largest_banks` and the transformed data frame, to the `load_to_db()` function in the function call.  
+
+Finally, the relevant log entry must be written.  
+
+Upon successful function call, the contents of the table with the required data and the file `Banks.db` will be loaded and visible in the `Explorer` tab of the IDE under the `project` folder.  
+
+To satisfy these requirements, I wrote the following code.  
+
+```Python
+def load_to_db(df, sql_connection, table_name):
+    ''' This function saves the final data frame to a database
+    table with the provided name. Function returns nothing.'''
+    df.to_sql(table_name, sql_connection, if_exists='replace', index=False)
+```  
+
+## 1. Function Definition  
+
+```Python
+def load_to_db(df, sql_connection, table_name):
+```
+
+*  `def` defines a function named load_to_db.  
+* It takes three arguments:  
+    *  `df`: the Pandas DataFrame that you want to load into a database.  
+    *  `sql_connection`: an open database connection object, typically created using `sqlite3.connect()` or `SQLAlchemy`.
+    * `table_name`: the name of the database table where the data should be saved (as a string).
+
+## 2. Docstring  
+
+```Python
+    ''' This function saves the final data frame to a database
+    table with the provided name. Function returns nothing.'''
+```
+
+* This docstring describes what the function does:  
+    * It saves the DataFrame (`df`) to a SQL database table using the given connection and table name.  
+    * It does not return anything — just performs the save operation.  
+
+## 3. Writing to SQL Table  
+
+`df.to_sql(...)`  
+   * A Pandas method that writes a DataFrame to a SQL table.  
+   * It uses the database connection provided.  
+`table_name`    
+    * The name of the SQL table where the data will be saved.  
+    * If the table doesn’t exist, Pandas will create it.  
+    * If it does exist, what happens is controlled by `if_exists`.
+`sql_connection`  
+    * The connection object to the SQL database (e.g., from `sqlite3.connect("Banks.db")`).
+`if_exists='replace'`
+* Controls what happens if the table already exists:  
+    * `'replace'`: Deletes the existing table and creates a new one with the same name.  
+    * `'append'`: Adds new rows to the existing table.  
+    * `'fail'`: Raises an error if the table already exists.
+*`replace`* is commonly used during ETL to always overwrite old data with the newest version.  
+`index=False`  
+* Prevents the DataFrame's index (row numbers) from being written as an extra column in the SQL table.  
+
+Finally, we can add the function call below the `# Call load_to_csv()` lines; however, by checking the table provided in Task 1, we will realise that we are required to write 2 calls, specifically for `Initiate SQLite3 connection`, and `Call load_to_db()`.  
+
+They are shown in the following strings:  
+
+```Python
+# Initiate SQLite3 connection
+sql_connection = sqlite3.connect(db_name)
+
+log_progress("SQL Connection initiated")
+
+# Call load_to_db()
+load_to_db(df, sql_connection, table_name)
+
+log_progress("Data loaded to Database as a table, Executing queries")
+```
+
+## Line 1  
+
+```Python
+# Initiate SQLite3 connection
+sql_connection = sqlite3.connect(db_name)
+```
+
+* This line establishes a connection to a SQLite database.
+* `sqlite3.connect(...)` is a built-in Python function that opens or creates a SQLite `.db` file.  
+* `db_name` is a string variable defined earlier (`db_name = "Banks.db"`), so this line opens (or creates) the file `Banks.db` in the current directory, and returns a connection object.
+
+## Line 2  
+
+```Python
+log_progress("SQL Connection initiated")
+```
+
+* This line logs a message saying that the SQL connection is ready.  
+* `log_progress(...)` is the custom function that:  
+    * Writes timestamped messages to a log file like `code_log.txt`.  
+    * Useful for debugging and monitoring the ETL process.
+
+## Line 3  
+
+```Python
+# Call load_to_db()
+load_to_db(df, sql_connection, table_name)
+```
+
+* This calls the `load_to_db()` function defined earlier.  
+* Arguments:  
+    * `df`: your final transformed DataFrame.  
+    * `sql_connection`: the active connection to `Banks.db`.  
+    * `table_name`: a string defined earlier (e.g. `"Largest_banks"`)  
+
+### What it does:  
+
+* Writes the contents of `df` into a SQL table named `"Largest_banks"` in the `Banks.db` database.  
+* If the table already exists, it replaces it (thanks to `if_exists='replace'` inside the function).  
+* No row indices are saved (because of `index=False`).  
+
+## Line 4  
+
+```Python
+log_progress("Data loaded to Database as a table, Executing queries")
+```
+
+* It logs a message that the data is now inside the database.
+* It also signals that the next stage (if any — like running queries or reports) is about to begin.
+
+Finally, we can lauch the program string in the terminal and see what happens. 
+
+
+```
+python3.11 banks_project.py
+```
