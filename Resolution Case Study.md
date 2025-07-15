@@ -866,7 +866,6 @@ Before running the program, however, we must write the function call for `load_t
 # Call load_to_csv()
 load_to_csv(df, output_path)
 
-
 log_progress("Data saved to CSV file")
 ```  
 
