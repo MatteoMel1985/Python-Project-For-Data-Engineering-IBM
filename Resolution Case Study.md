@@ -1,4 +1,4 @@
-python3.11 -m pip install bs4# Preliminaries: Installing libraries and downloading data   
+# Preliminaries: Installing libraries and downloading data   
 
 The preliminary requirements of the exam are the following:  
 
