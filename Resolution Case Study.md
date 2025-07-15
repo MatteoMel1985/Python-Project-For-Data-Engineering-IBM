@@ -1012,9 +1012,9 @@ log_progress("Data loaded to Database as a table, Executing queries")
 * It logs a message that the data is now inside the database.
 * It also signals that the next stage (if any — like running queries or reports) is about to begin.
 
-Finally, we can lauch the program string in the terminal and see what happens. 
+Finally, as requested at the end of the task, we can finally screenshot the code on the editor screen and save it as `Task_4_5_save_file.png`  
 
+![Task_4_5](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Task_4_5_save_file.png?raw=true)  
 
-```
-python3.11 banks_project.py
-```
+# Task 6: Function to Run queries on Database  
+
