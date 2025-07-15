@@ -834,19 +834,59 @@ This function is the “L” (Load) step in the Extract–Transform–Load (ETL)
 
 ## Line-by-line Description  
 
-## 1
+## 1. Function Definition
 
 ```Python
 def load_to_csv(df, output_path):
 ```
 
-* This line defines a function called `load_to_csv`.
+* `def` is a keyword that defines a new function.
+* `load_to_csv` is the function name.
 * It takes two arguments:
     * `df`: the Pandas DataFrame you want to save
-    * `output_path`: the path you should be saving the CSV file to
+    * `output_path`: the file path (string) where the DataFrame should be saved, which is `"./Largest_banks_data.csv"`.  
 
-## 2
+## 2. Docstring
+
+```Python
+    ''' This function saves the final data frame as a CSV file in
+    the provided path. Function returns nothing.'''
+```
+* This is a docstring — a block of text that explains what the function does.  
+* It describes that:  
+    * The function saves the DataFrame as a CSV file.  
+    * The file is saved to the location given by `output_path`.  
+    * The function doesn’t return anything (it just performs a saving action).
+ 
+  ## 3. Saving the CSV
+
+  * This line writes the DataFrame to a CSV file on disk.  
+  * `df.to_csv(...)` is a Pandas method that exports a DataFrame to a CSV file.  
+  * `output_path` is the file path where the CSV will be saved, passed in as an argument.
+  * `index=False` tells Pandas not to write the row index (or the rows enumeration, such as 0, 1, 2, ...) as a column in the CSV.
+
+Before running the program, however, we must write the function call for `load_to_csv()`, which must be added at the bottom of our code, below the `# Call transform() function`
+
+```Python
+# Call load_to_csv()
+load_to_csv(df, output_path)
 
 
+log_progress("Data saved to CSV file")
+```  
 
+Finally, we can run the program by launching the following string in the terminal.  
 
+```
+python3.11 banks_project.py
+```
+
+Once done, aside from its expected output, a new CSV file will appear on the left Explorer pane, in the selected path `\home\project\`.  
+
+![Screenshot_12](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%2012.JPG?raw=true)  
+
+By clicking on it and opening it, we can take a screenshot of the editor screen and save it under the name `Task_4_CSV.png`.  
+
+![Task_4](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Task_4_CSV.PNG?raw=true)  
+
+# Task 5: Loading to Database  
