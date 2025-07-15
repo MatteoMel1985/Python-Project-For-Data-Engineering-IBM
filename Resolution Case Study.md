@@ -798,7 +798,6 @@ Finally, before running the program, we are required to write the `transform()` 
 df = transform(df, csv_path)
 print(df)
 
-
 log_progress("Data transformation complete. Initiating Loading process")
 ```
 
