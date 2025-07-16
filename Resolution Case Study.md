@@ -1228,7 +1228,18 @@ To do so, we can either run the following code in the terminal
 rm code_log.txt
 ```
 
-Or simply right-click the `code_log.txt` file from the `Explorer` in the left ribbon, and select `Delete`.
+Or simply right-click the `code_log.txt` file from the `Explorer` in the left ribbon, and select `Delete`.  
 
+![Screenshot_13](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%2013.JPG?raw=true)  
 
+We can now run our program in the terminal.  
 
+```
+python3.11 banks_project.py
+```
+
+The screenshot named `Task_7_log_content.png` sould appear similar to this.  
+
+![Task_7](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Task_7_log_content.png?raw=true)  
+
+The `code_log.tx` file can be found in the dedicated folder. 
