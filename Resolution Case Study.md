@@ -1210,7 +1210,7 @@ query_statement = f"SELECT Name from {table_name} LIMIT 5"
 run_query(query_statement, sql_connection)
 ```
 
-Returns 5 rows: The header plus 4 bank's name.  
+Returns 5 rows: The header plus 4 bank names.  
 
 If we want to visualise the header plus 5 bank names, the query should be adjusted to  
 
