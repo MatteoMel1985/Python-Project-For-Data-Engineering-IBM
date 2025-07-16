@@ -1203,6 +1203,22 @@ The result can be saved under the name `Task_6_SQL`.
 
 ![Task_6_SQL](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Task_6_SQL.png?raw=true)  
 
+Please, note that the SQL query
+
+```Python
+query_statement = f"SELECT Name from {table_name} LIMIT 5"
+run_query(query_statement, sql_connection)
+```
+
+Returns 5 rows: The header plus 4 bank's name.  
+
+If we want to visualise the header plus 5 bank names, the query should be adjusted to  
+
+```Python
+query_statement = f"SELECT Name from {table_name} LIMIT 6"
+run_query(query_statement, sql_connection)
+```
+
 
 
 
