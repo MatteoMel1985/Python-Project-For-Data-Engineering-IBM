@@ -1018,7 +1018,7 @@ Finally, as requested at the end of the task, we can finally screenshot the code
 
 # Task 6: Function to Run queries on Database  
 
-Close to the end, we are now required to write the function `run_queries()` that:  
+Close to the end, we are now required to write the function `run_query()` that:  
 
 * Accepts the query statement;
 * Accepts the SQLite3 Connection object;
@@ -1045,3 +1045,165 @@ SELECT Name from Largest_banks LIMIT 5
 ```
 
 And make the relevant log entry.
+
+Following is `run_queries()` function to be written on the editor screen.  
+
+```Python
+def run_query(query_statement, sql_connection):
+    ''' This function runs the query on the database table and
+    prints the output on the terminal. Function returns nothing. '''
+   
+    print(query_statement)
+    query_output = pd.read_sql(query_statement, sql_connection)
+    print(query_output)
+```
+
+## 1. Function definition  
+
+```Python
+def run_query(query_statement, sql_connection):
+```
+
+* `def` starts the definition of a new function called `run_query`.  
+* It takes two parameters:  
+    * `query_statement`: a string containing a SQL query (e.g., "`SELECT * FROM Largest_banks`").
+    * `sql_connection`: a live SQLite3 database connection (created using sqlite3.connect(...)).
+ 
+## 2. Docstring  
+
+```Python
+    ''' This function runs the query on the database table and
+    prints the output on the terminal. Function returns nothing. '''
+```
+
+* This is a docstring — a comment that explains what the function does.
+* It tells you:
+    * The function will execute a SQL query on the connected database.
+    * It prints the result to the terminal.
+    * It does not return anything (just prints output).
+ 
+## 3. Print the SQL query  
+
+```Python
+    print(query_statement)
+```
+
+* This simply prints the SQL query to the terminal.  
+* Useful for logging or debugging — so you can see which query is being run.
+
+## 4. Execute the Query  
+
+```Python
+    query_output = pd.read_sql(query_statement, sql_connection)
+```
+
+* This line runs the actual SQL query using Pandas.  
+* `pd.read_sql(...)` is a Pandas function that:  
+    * Executes the SQL query (`query_statement`) on the provided database connection (`sql_connection`).
+    * Returns the result as a Pandas DataFrame.
+ 
+## Print the Result
+
+```Python
+    print(query_output)
+```
+
+* This prints the query result (now stored as a DataFrame in `query_output`) to the terminal.
+* So you immediately see the data that came back from the SQL query.
+
+Finally, it is now time to write the function call, with all its SQL queries. 
+
+```Python
+# Call run_query()
+# 1. Print the contents of the entire table
+query_statement = f"SELECT * from {table_name}"
+run_query(query_statement, sql_connection)
+
+# 2. Print the average market capitalization of all the banks in Billion GBP
+query_statement = f"SELECT AVG(MC_GBP_Billion) FROM {table_name}"
+run_query(query_statement, sql_connection)
+
+# 3. Print only the names of the top 5 banks
+query_statement = f"SELECT Name from {table_name} LIMIT 5"
+run_query(query_statement, sql_connection)
+
+log_progress("Process Complete")
+
+# Close SQLite3 connection
+sql_connection.close()
+
+log_progress("Server Connection closed")
+```
+
+## 1. Print the Entire Table
+
+```Python
+query_statement = f"SELECT * from {table_name}"
+run_query(query_statement, sql_connection)
+```
+
+* `f"SELECT * from {table_name}"` creates a SQL query string using the value of table_name (e.g., "`Largest_banks`").  
+* `SELECT *` means: select all columns and all rows.  
+* `run_query(...)` executes this query and prints the full table to the terminal.
+
+## 2. Average market cap in GBP  
+
+```Python
+query_statement = f"SELECT AVG(MC_GBP_Billion) FROM {table_name}"
+run_query(query_statement, sql_connection)
+```
+
+* `AVG(...)` calculates the average of the `MC_GBP_Billion` column (market cap in British pounds).  
+* `run_query(...)` will print the result (a single value) to the terminal.
+
+## 3. Top 5 bank names  
+
+```Python
+query_statement = f"SELECT Name from {table_name} LIMIT 5"
+run_query(query_statement, sql_connection)
+```
+
+* `SELECT Name` fetches only the bank names (no other columns).
+* `LIMIT 5` restricts the result to just the first 5 rows in the table.
+* Again, `run_query()` prints this list to the terminal.
+
+## 4. Log process completion  
+
+```Python
+log_progress("Process Complete")
+```
+
+* This logs a final message to your log file (e.g., `code_log.txt`) indicating that the ETL process is done.  
+
+# 5. Close DB connection  
+
+```Python
+sql_connection.close()
+```
+
+* Closes the connection to the SQLite database.  
+* It's good practice to close your connection once all queries are done to free up system resources.
+
+# Final log message  
+
+```Python
+log_progress("Server Connection closed")
+```
+
+* Logs that the SQLite connection has been safely closed.  
+* Acts as the final confirmation in your ETL pipeline.
+
+Finally, we are ready to run the program.  
+
+```
+python3.11 banks_project.py
+```
+
+The result can be saved under the name `
+
+![Task_6_SQL](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Task_6_SQL.png?raw=true)  
+
+
+
+
+
