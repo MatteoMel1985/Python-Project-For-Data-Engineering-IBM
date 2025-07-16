@@ -1018,3 +1018,30 @@ Finally, as requested at the end of the task, we can finally screenshot the code
 
 # Task 6: Function to Run queries on Database  
 
+Close to the end, we are now required to write the function `run_queries()` that:  
+
+* Accepts the query statement;
+* Accepts the SQLite3 Connection object;
+* Generates the output of the query.
+
+In addition, we must execute the 3 function calls using the following SQL.
+
+1. Print the content of the entire table.  
+
+```SQL
+SELECT * FROM Largest_banks
+```
+
+2. Print the average market capitalisation of all the banks in Billion GBP.
+
+```SQL
+SELECT AVG(MC_GBP_Billion) FROM Largest_banks
+```
+
+3. Print only the names of the top 5 banks
+
+```SQL
+SELECT Name from Largest_banks LIMIT 5
+```
+
+And make the relevant log entry.
