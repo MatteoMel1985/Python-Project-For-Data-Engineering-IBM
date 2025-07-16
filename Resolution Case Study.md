@@ -1199,7 +1199,7 @@ Finally, we are ready to run the program.
 python3.11 banks_project.py
 ```
 
-The result can be saved under the name `
+The result can be saved under the name `Task_6_SQL`.
 
 ![Task_6_SQL](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Task_6_SQL.png?raw=true)  
 
