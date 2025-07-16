@@ -1219,7 +1219,16 @@ query_statement = f"SELECT Name from {table_name} LIMIT 6"
 run_query(query_statement, sql_connection)
 ```
 
+# Task 7: Verify log entries  
 
+Ultimately, we are requested to take a screenshot of the `code_log.txt` file, and save it as `Task_7_log_content.png`; however, as we run the program multiple times and recorded different logs, we should delete it first, and then run the program again.  
+To do so, we can either run the following code in the terminal  
+
+```
+rm code_log.txt
+```
+
+Or simply right-click the `code_log.txt` file from the `Explorer` in the left ribbon, and select `Delete`.
 
 
 
