@@ -205,7 +205,7 @@ The line
 ```python
 now = datetime.now()  # get current timestamp
 ```  
-gets the current date and time as a `datetime` object using the Python built-in `datetime` module.  
+Gets the current date and time as a `datetime` object using the Python built-in `datetime` module.  
 
 The line 
 
