@@ -245,97 +245,7 @@ The requested `Task_1_log_function.png` screenshot will appear as follows.
 
 ![Task_1](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Task_1_log_function.png?raw=true)  
 
-Note that the function calls must be written at the end of the code and will appear as follows. We will see their meaning in-depth once all functions are defined and explained. 
-
-```python
-''' Here, you define the required entities and call the relevant
-functions in the correct order to complete the project. Note that this
-portion is not inside any function.'''
-
-
-# Declaring known values
-
-
-url = "https://web.archive.org/web/20230908091635/https://en.wikipedia.org/wiki/List_of_largest_banks"
-csv_path = "./exchange_rate.csv"
-table_attribs = ["Name", "MC_USD_Billion"]
-output_path = "./Largest_banks_data.csv"
-db_name = "Banks.db"
-table_name = "Largest_banks"
-log_file = "./code_log.txt"
-
-
-log_progress("Preliminaries complete. Initiating ETL process")
-
-
-# Call extract() function
-df = extract(url, table_attribs)
-print(df)
-
-
-log_progress("Data extraction complete. Initiating Transformation process")
-
-
-# Call transform() function
-df = transform(df, csv_path)
-print(df)
-
-
-log_progress("Data transformation complete. Initiating Loading process")
-
-
-# Call load_to_csv()
-load_to_csv(df, output_path)
-
-
-log_progress("Data saved to CSV file")
-
-
-# Initiate SQLite3 connection
-sql_connection = sqlite3.connect(db_name)
-
-
-log_progress("SQL Connection initiated")
-
-
-# Call load_to_db()
-load_to_db(df, sql_connection, table_name)
-
-
-log_progress("Data loaded to Database as a table, Executing queries")
-
-
-# Call run_query()
-# 1. Print the contents of the entire table
-query_statement = f"SELECT * from {table_name}"
-run_query(query_statement, sql_connection)
-
-
-# 2. Print the average market capitalization of all the banks in Billion GBP
-query_statement = f"SELECT AVG(MC_GBP_Billion) FROM {table_name}"
-run_query(query_statement, sql_connection)
-
-
-# 3. Print only the names of the top 5 banks
-query_statement = f"SELECT Name from {table_name} LIMIT 5"
-run_query(query_statement, sql_connection)
-
-
-log_progress("Process Complete")
-
-
-# Close SQLite3 connection
-sql_connection.close()
-
-
-log_progress("Server Connection closed")
-
-
-# Task 7: Verify log entries
-with open(log_file, "r") as log:
-    LogContent = log.read()
-    print(LogContent)
-```
+Note that the function calls must be written at the end of the code; it will be gradually explained on each of our tasks, amd can be observed in the full code published in the file `banks_project.py`.
 
 # Task 2: Extraction of data  
 
@@ -391,7 +301,7 @@ def extract(url, table_attribs):
     return df
 ```
 
-## Function Definition and Docstring  
+## 1. Function Definition and Docstring  
 
 ```Python
 def extract(url, table_attribs):
@@ -408,7 +318,7 @@ def extract(url, table_attribs):
 
 Finally, the docstring below provides a literal explanation of the function’s purpose.  
 
-## Requesting the Web Page  
+## 2. Requesting the Web Page  
 
 ```Python
     page = requests.get(url).text
@@ -420,7 +330,7 @@ Finally, the docstring below provides a literal explanation of the function’s 
 
 `page`: now contains the full HTML content of the Wikipedia page.  
 
-## Parsing the HTML with BeautifulSoup  
+## 3. Parsing the HTML with BeautifulSoup  
 
 ```Python
     data = BeautifulSoup(page, 'html.parser')
@@ -430,7 +340,7 @@ Finally, the docstring below provides a literal explanation of the function’s 
 
 `data`: is now a BeautifulSoup object — a structured tree-like representation of the HTML, making it easier to navigate and search.
 
-## Create Empty DataFrame with Desired Columns  
+## 4. Create Empty DataFrame with Desired Columns  
 
 ```Python
     df = pd.DataFrame(columns=table_attribs)
@@ -440,7 +350,7 @@ Initializes an empty DataFrame with columns defined by table_attribs (like ["Nam
 
 This is where we’ll store the extracted data.  
 
-## Locate All Table Bodies (`<tbody>` Tags)  
+## 5. Locate All Table Bodies (`<tbody>` Tags)  
 
 ```Python
     tables = data.find_all('tbody')
@@ -450,7 +360,7 @@ This is where we’ll store the extracted data.
 
 `tables`: is a list of all <tbody> elements (which contain rows of tables).  
 
-## Extract All the Table Rows from the First Table  
+## 6. Extract All the Table Rows from the First Table  
 
 ```Python
     rows = tables[0].find_all('tr')
@@ -462,7 +372,7 @@ This is where we’ll store the extracted data.
 
 `rows`: is now a list of all rows in the first table.  
 
-## Loop Through the Table Rows  
+## 7. Loop Through the Table Rows  
 
 ```Python
     for row in rows:
@@ -475,7 +385,7 @@ Iterates over each `row` in the table.
 
 `col`: is a list of columns in the row.  
 
-## Filter Out Non-Data Rows  
+## 8. Filter Out Non-Data Rows  
 
 ```Python
         if len(col)!=0:
@@ -485,7 +395,7 @@ Skips rows that don’t contain any `<td>` (like header rows that use `<th>`).
 
 Only processes rows with actual data.  
 
-## Extract and Format the Data from Columns  
+## 9. Extract and Format the Data from Columns  
 
 ```Python
             data_dict = {"Name": col[1].find_all("a")[1]["title"],
@@ -514,7 +424,7 @@ This string is specifically devised to parse nested tags.
 
 * `float(...)`: Converts the string into a floating-point number.
 
-## Add to the Main DataFrame  
+## 10. Add to the Main DataFrame  
 
 ```Python
             df1 = pd.DataFrame(data_dict, index=[0])
@@ -527,11 +437,11 @@ This string is specifically devised to parse nested tags.
 
 `ignore_index=True`: resets row indexes so they remain continuous.  
 
-## Continue Until All Rows are Parsed  
+## 11. Continue Until All Rows are Parsed  
 
 The loop continues for all rows in `rows`.  
 
-## Return the Final DataFrame  
+## 12. Return the Final DataFrame  
 
 ```Python
     return df
@@ -739,14 +649,14 @@ def transform(df, csv_path):
     return df
 ```
 
-## Function Definition and Docstring  
+## 1. Function Definition and Docstring  
 
 * `def transform(df, csv_path):` *creates a function named transform that expects*
     * `df` – a Pandas DataFrame already containing a column called MC_USD_Billion.
     * `csv_path` – a string or pathlib object pointing to a CSV file of exchange rates (one row per currency).
 * **Docstring** (written between " ''' ") – briefly summarises the purpose: read rates, add three new currency columns.
 
-## Read the exchange‑rate CSV  
+## 2. Read the exchange‑rate CSV  
 
 ```Python
     # Read exchange rate CSV file
@@ -755,7 +665,7 @@ def transform(df, csv_path):
 
 * `pd.read_csv(csv_path)` – loads the CSV into a DataFrame named `exchange_rate`.
 
-## Convert that DataFrame to a handy dictionary  
+## 3. Convert that DataFrame to a handy dictionary  
 
 ```Python
     # Convert to a dictionary with "Currency" as keys and "Rate" as values
@@ -771,7 +681,7 @@ Result:
 
 ### *This part of the code satisfies the criteria point 1 of task 3. Let's proceed with point 2.* 
 
-## Add currency‑converted columns  
+## 4. Add currency‑converted columns  
 
 ```Python
     # columns to dataframe. Round off to two decimals
@@ -787,7 +697,7 @@ Result:
     * `MC_INR_Billion`  
 * `np` assumes you’ve already imported `numpy as np` (and `pandas as pd`), which we have done in the preliminaries.
 
-Finally, before running the program, we are required to write the `transform()` function call, which must be added below the `# Call extract() function`.
+In the end, before running the program, we are required to write the `transform()` function call, which must be added below the `# Call extract() function`.
 
 ```Python
 # Call transform() function
@@ -826,8 +736,6 @@ def load_to_csv(df, output_path):
 ## Function Purpose  
 
 This function is the “L” (Load) step in the Extract–Transform–Load (ETL) pipeline. It takes a transformed DataFrame (i.e. your bank market cap data in multiple currencies) and writes it to a CSV file on the local file system.  
-
-## Line-by-line Description  
 
 ## 1. Function Definition
 
@@ -930,19 +838,23 @@ def load_to_db(df, sql_connection, table_name):
 
 `df.to_sql(...)`  
    * A Pandas method that writes a DataFrame to a SQL table.  
-   * It uses the database connection provided.  
+   * It uses the database connection provided.
+
 `table_name`    
-    * The name of the SQL table where the data will be saved.  
-    * If the table doesn’t exist, Pandas will create it.  
-    * If it does exist, what happens is controlled by `if_exists`.
+* The name of the SQL table where the data will be saved.  
+* If the table doesn’t exist, Pandas will create it.  
+* If it does exist, what happens is controlled by `if_exists`.
+
 `sql_connection`  
-    * The connection object to the SQL database (e.g., from `sqlite3.connect("Banks.db")`).
-`if_exists='replace'`
+* The connection object to the SQL database (e.g., from `sqlite3.connect("Banks.db")`).
+
+`if_exists='replace'`  
 * Controls what happens if the table already exists:  
     * `'replace'`: Deletes the existing table and creates a new one with the same name.  
     * `'append'`: Adds new rows to the existing table.  
     * `'fail'`: Raises an error if the table already exists.
-*`replace`* is commonly used during ETL to always overwrite old data with the newest version.  
+*`replace`* is commonly used during ETL to always overwrite old data with the newest version.   
+
 `index=False`  
 * Prevents the DataFrame's index (row numbers) from being written as an extra column in the SQL table.  
 
