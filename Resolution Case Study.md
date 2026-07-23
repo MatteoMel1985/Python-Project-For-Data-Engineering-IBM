@@ -253,11 +253,11 @@ Analyse the webpage on the given URL:
 
 <https://web.archive.org/web/20230908091635/https://en.wikipedia.org/wiki/List_of_largest_banks>  
 
-As we are required to identify the position of the table under the heading `By market capitalization`, which is immediately visible on the central part of the screen, right-click on any point of the table, and select “inspect”, as shown in the following screenshot.  
+As we are required to identify the position of the table under the heading `By market capitalization`, which is immediately visible in the central part of the screen, right-click on any point of the table, and select “inspect”, as shown in the following screenshot.  
 
-![Screenshot_9](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%209.JPG?raw=true)  
+![Screenshot_9](https://res.cloudinary.com/dmrfsdtq2/image/upload/v1784775474/Screenshot_9_vjcjaw.jpg)  
 
-On the right side of the screen, the list of HTML codes composing the page will appear. By moving the mouse pointer on them, the different corresponding parts of the table will be automatically highlighted.  
+On the right side of the screen, the list of HTML codes composing the page will appear. By moving the mouse pointer over them, the different corresponding parts of the table will be automatically highlighted.  
 
 In the whole code, we must first identify the following element string:  
 
@@ -273,12 +273,12 @@ By collapsing the latter, we will notice that all the rows are mentioned as `tr`
 
 As we are required to take a screenshot of the HTML code, as obtained by inspecting the page, ensuring that the contents of at least the first row of the table are visible, we can save the following image as `Task_2a_extract.png`.  
 
-![Screenshot_10](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%2010.JPG?raw=true)  
+![Screenshot_10](https://res.cloudinary.com/dmrfsdtq2/image/upload/v1784775475/Screenshot_10_ajdfjz.jpg)  
 
 The second part of Task 2 requires us to take a screenshot of the code as created for the `extract()` function, and save it on the local machine as `Task_2b_extract.png`. In the instructions, we are reminded to remove the last character from the `Market Cap` column contents, like `'\n'`, and to typecast the value to float format. 
 The screenshot and code are shown below; they will be further commented in depth in the following lines of this case study. 
 
-![Task_2b](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Task_2b_extract.PNG?raw=true)  
+![Task_2b](./Tasks/Task_2b_extract.PNG)  
 
 ```Python
 def extract(url, table_attribs):
@@ -593,7 +593,7 @@ Ultimately, as the function call is now complete, by running the following comma
 python3.11 banks_project.py
 ```
 
-![Task_2c](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Task_2c_extract.PNG?raw=true)  
+![Task_2c](./Tasks/Task_2c_extract.PNG)  
 
 # Task 3: Transformation of data  
 
@@ -626,7 +626,7 @@ To achieve this end, I wrote the following function, which I will break it down 
 
 Point 1 and point and point 2 are shown in the documentation comments, and the image below can be used to satisfy the screenshot request named `Task_3a_transform.png`  
 
-![Task_3a](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Task_3a_transform.PNG?raw=true)  
+![Task_3a](Task_3a_transform.PNG)  
 
 ```Python
 def transform(df, csv_path):
@@ -715,7 +715,7 @@ python3.11 banks_project.py
 
 The following is what should appear on the terminal, which can be used as the requested screenshot named `Task_3b_tranform.png`  
 
-![Task_3b](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Task_3b_tranform.PNG?raw=true)  
+![Task_3b](Task_3b_tranform.PNG)  
 
 # Task 4: Loading to CSV  
 
@@ -785,11 +785,11 @@ python3.11 banks_project.py
 
 Once done, aside from its expected output, a new CSV file will appear on the left Explorer pane, in the selected path `\home\project\`.  
 
-![Screenshot_12](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%2012.JPG?raw=true)  
+![Screenshot_12](https://res.cloudinary.com/dmrfsdtq2/image/upload/v1784775473/Screenshot_12_qemfdt.jpg)  
 
 By clicking on it and opening it, we can take a screenshot of the editor screen and save it under the name `Task_4_CSV.png`.  
 
-![Task_4](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Task_4_CSV.PNG?raw=true)  
+![Task_4](./Tasks/Task_4_CSV.PNG)  
 
 # Task 5: Loading to Database  
 
@@ -926,7 +926,7 @@ log_progress("Data loaded to Database as a table, Executing queries")
 
 Finally, as requested at the end of the task, we can finally screenshot the code on the editor screen and save it as `Task_4_5_save_file.png`  
 
-![Task_4_5](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Task_4_5_save_file.png?raw=true)  
+![Task_4_5](./Tasks/Task_4_5_save_file.png)  
 
 # Task 6: Function to Run queries on Database  
 
@@ -1113,7 +1113,7 @@ python3.11 banks_project.py
 
 The result can be saved under the name `Task_6_SQL`.
 
-![Task_6_SQL](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Task_6_SQL.png?raw=true)  
+![Task_6_SQL](./Tasks/Task_6_SQL.png)  
 
 Please, note that the SQL query
 
@@ -1142,7 +1142,7 @@ rm code_log.txt
 
 Or simply right-click the `code_log.txt` file from the `Explorer` in the left ribbon, and select `Delete`.  
 
-![Screenshot_13](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%2013.JPG?raw=true)  
+![Screenshot_13](https://res.cloudinary.com/dmrfsdtq2/image/upload/v1784775474/Screenshot_13_bd3xw0.jpg)  
 
 We can now run our program in the terminal.  
 
@@ -1152,6 +1152,6 @@ python3.11 banks_project.py
 
 The screenshot named `Task_7_log_content.png` sould appear similar to this.  
 
-![Task_7](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Task_7_log_content.png?raw=true)  
+![Task_7](./Tasks/Task_7_log_content.png)  
 
 The `code_log.tx` file can be found in the dedicated folder. 
