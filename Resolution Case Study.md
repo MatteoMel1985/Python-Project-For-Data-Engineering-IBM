@@ -31,13 +31,13 @@ from datetime import datetime
 
 To install these libraries, in case the EDI does not show a launching terminal at the bottom of the page, we must click on “Terminal” in the Title Bar, at the top of the screen, and select “New Terminal”.  
 
-![Screenshot_1](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%201.JPG?raw=true)  
+![Screenshot_1](https://res.cloudinary.com/dmrfsdtq2/image/upload/v1784775476/Screenshot_1_kwsu3e.jpg)  
 
 Ensure that the terminal shows the following directory path:  
 
 `home/project`  
 
-![Screenshot_2](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%202.JPG?raw=true)  
+![Screenshot_2](https://res.cloudinary.com/dmrfsdtq2/image/upload/v1784775472/Screenshot_2_wkxith.jpg)  
 
 In case your path is set differently, you can navigate through folders by using the `cd` code, which stands for "change directory".  
 
@@ -66,7 +66,7 @@ Wait until you see these lines appearing on the termina.
 `Installing collected packages: numpy, pandas`  
 `Successfully installed numpy-2.3.1 pandas-2.3.0`  
 
-![Screenshot_3](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%203.JPG?raw=true)  
+![Screenshot_3](https://res.cloudinary.com/dmrfsdtq2/image/upload/v1784775472/Screenshot_3_eviail.jpg)  
 
 Note that the command `python3.11` may vary according to your version of Python.  
 
@@ -94,21 +94,21 @@ wget https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMSkill
 
 Once the process is completed, we will be able to see the file `exchange_rate.csv` in the Explorer Menu of the EDI, under the "project" folder.  
 
-![Screenshot_4](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%204.JPG?raw=true)  
+![Screenshot_4](https://res.cloudinary.com/dmrfsdtq2/image/upload/v1784775472/Screenshot_4_wkk155.jpg)  
 
 # Code Structure  
 
 To create the file `banks_project.py` in the path `\home\project\`, we must click on the "Explore" icon on the left pane, select the folder "project", right click below it and select "New File"
 
-![Screenshot_5](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%205.JPG?raw=true)  
+![Screenshot_5](https://res.cloudinary.com/dmrfsdtq2/image/upload/v1784775472/Screenshot_5_fpdxjn.jpg)  
 
 Once the window is open, we must type `banks_project.py`and click on OK.  
 
-![Screenshot_6](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%206.JPG?raw=true)  
+![Screenshot_6](https://res.cloudinary.com/dmrfsdtq2/image/upload/v1784775473/Screenshot_6_gt0u4n.jpg)  
 
 The file `banks_project.py`will appear in the project folder, and it will automatically open in the text editor pane. In case it does not appear, double-click the `banks_project.py`icon in the project folder.  
 
-![Screenshot_7](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%207.JPG?raw=true)  
+![Screenshot_7](https://res.cloudinary.com/dmrfsdtq2/image/upload/v1784775473/Screenshot_7_hcoy2k.jpg)  
 
 There, on line number 1, we must paste the code structure provided, which is the following.
 
@@ -155,7 +155,7 @@ portion is not inside any function.'''
 
 Once done, the text editor pane will appear as follows.  
 
-![Screenshot_8](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Screenshot%208.JPG?raw=true)  
+![Screenshot_8](https://res.cloudinary.com/dmrfsdtq2/image/upload/v1784775473/Screenshot_8_k09ra5.jpg)  
 
 Save the file by digiting the combination `Ctrl+S`.  
 
@@ -243,7 +243,7 @@ Following is an example of line in the log file:
 
 The requested `Task_1_log_function.png` screenshot will appear as follows. 
 
-![Task_1](https://github.com/MatteoMel1985/Relational-Dataset-Images/blob/main/Data%20Engineering%20Images/Task_1_log_function.png?raw=true)  
+![Task_1](./Tasks/Task_1_log_function.png)  
 
 Note that the function calls must be written at the end of the code; it will be gradually explained on each of our tasks, amd can be observed in the full code published in the file `banks_project.py`.
 
