@@ -1,6 +1,6 @@
-# Hands-on Lab: Acquiring and Processing Information on the World's Largest Banks 
-
 ![Skills_Network](https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMSkillsNetwork-PY0221EN-Coursera/images/image.png)
+
+# Hands-on Lab: Acquiring and Processing Information on the World's Largest Banks 
 
 ## Estimated Time: 60 mins  
 
@@ -346,6 +346,5 @@ You should now be able to:
 
 - Log the progress of the code properly
 
-# Coded by 
-
-[Matteo Meloni](https://www.linkedin.com/in/matteo-meloni-40a357154/)
+# Author
+# ***[Matteo Meloni](https://www.linkedin.com/in/matteo-meloni-40a357154/)***
